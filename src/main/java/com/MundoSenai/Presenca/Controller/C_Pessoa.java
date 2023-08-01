@@ -10,15 +10,33 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class C_Pessoa {
     @GetMapping("/")
     public String helloWorld(){
-        return "templates/login";
+        return "Login/login";
     }
 
     @PostMapping("/")
     public String postLogin(@RequestParam("usuario") String usuario, @RequestParam("senha") String senha) {
         if (S_Pessoa.getPessoaLogin(usuario, senha) == null) {
-            return "teste";
+            return "Login/login";
         } else {
-            return "templates/login";
+            return "Home/home";
         }
     }
+
+    @GetMapping("/cadastro")
+    public String getCadastro(){
+        return "Pessoa/cadastro";
+    }
+
+    @PostMapping("/cadastro")
+    public String postCadastro(@RequestParam("nome") String nome,
+                               @RequestParam("email") String email,
+                               @RequestParam("cpf") String cpf,
+                               @RequestParam ("telefone") String telefone,
+                               @RequestParam ("datanasc") String datanasc,
+                               @RequestParam ("senha") String senha,
+                               @RequestParam ("confsenha") String confsenha){
+        return "redirect:/";
+    }
+
+
 }
